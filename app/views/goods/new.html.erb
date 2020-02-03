@@ -1,0 +1,14 @@
+<%= form_for(@good) do |f| %>
+
+  <div class="field">
+    <%= f.label :product %><br />
+    <%= f.text_field :product %>
+  </div>
+  <div class="field">
+    <%= f.label :brand %><br />
+    <%= f.text_field :brand %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

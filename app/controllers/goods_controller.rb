@@ -24,6 +24,6 @@ class GoodsController < ApplicationController
   private
 
   def good_params
-    params.require(:good).permit(:product, :brand)
+    params.require(:good).permit(:product, :brand, :image)
   end
 end

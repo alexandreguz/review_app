@@ -1,4 +1,8 @@
+<div style="margin: 20px;padding: 20px;font-size: 16px;background: #f0f0f0;color: #888;">
+<div style="border-bottom: 1px solid #888;margin-bottom: 5px;padding-bottom-5px;">
+  Product: <b> <%= @jgm.product %></b> <br>
+  Brand: <b> <%= @jgm.brand %> </b>
+</div>
 
-product: <%= @jgm.product %> <br>
-
-brand: <%= @jgm.brand %>
+<%= image_tag(@jgm.image_url, class: "good-image") if @jgm.image? %>
+</div>

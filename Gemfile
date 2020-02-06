@@ -23,6 +23,8 @@ gem 'pry-rails'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
+
+gem 'carrierwave', '~> 2.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

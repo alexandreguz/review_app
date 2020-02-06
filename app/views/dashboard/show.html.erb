@@ -11,5 +11,5 @@
 </nav>
 
 <% @my_last_goods.each do |g| %>
-<div><%= g.product %> - <%= g.brand %></div>
+<div><a href="/goods/<%= g.id %>"><%= g.product %> - <%= g.brand %></a></div>
 <% end %>

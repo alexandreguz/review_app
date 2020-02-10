@@ -1,8 +1,31 @@
 <div style="margin: 20px;padding: 20px;font-size: 16px;background: #f0f0f0;color: #888;">
 <div style="border-bottom: 1px solid #888;margin-bottom: 5px;padding-bottom-5px;">
-  Product: <b> <%= @jgm.product %></b> <br>
-  Brand: <b> <%= @jgm.brand %> </b>
+  Product: <b> <%= @good.product %></b> <br>
+  Brand: <b> <%= @good.brand %> </b>
+
+  <div class="container">
+  <%= form_for(@review) do |f| %>
+    <div class="field">
+      <%= f.label :opinion %><br />
+      <%= f.text_field :opinion, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :stars %><br />
+      <%= f.text_field :stars, class: "form-control"  %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Add Review", class: "btn btn-info btn-save" %>
+    </div>
+
+  <% end %>
+  </div>
+
+
 </div>
 
-<%= image_tag(@jgm.image_url, class: "good-image") if @jgm.image? %>
+<%= image_tag(@good.image_url, class: "good-image") if @good.image? %>
+<div> <br>
+  <a class="nav-item nav-link" href="/goods/<%= @good.id %>/edit">edit good</a>
 </div>

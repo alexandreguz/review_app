@@ -1,6 +1,7 @@
 class GoodsController < ApplicationController
   def show
-    @jgm = Good.find(params[:id])
+    @good = Good.find(params[:id])
+    @review = Review.new
   end
 
   def new
@@ -20,6 +21,25 @@ class GoodsController < ApplicationController
       end
     end
   end
+
+  def edit
+    @good = Good.find(params[:id])
+  end
+
+  def update
+    @good = Good.find(params[:id])
+
+    respond_to do |format|
+      if @good.update(good_params)
+        format.html { redirect_to @good, notice: 'good was successfully updated.' }
+        format.json { render json: @good, status: :created, location: @good }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @good.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   private
 

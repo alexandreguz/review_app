@@ -2,6 +2,7 @@ class GoodsController < ApplicationController
   def show
     @good = Good.find(params[:id])
     @review = Review.new
+    @reviews = @good.reviews
   end
 
   def new

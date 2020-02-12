@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to goods_path, notice: 'Review was successfully created.' }
+        format.html { redirect_to good_path(id: review_params[:good_id]), notice: 'Review was successfully created.' }
       # format.json { render json: @good, status: :created, location: @good }
       else
         format.html { render action: "goods_path", notice: "Ops, your review was not saved" }
@@ -21,6 +21,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:opinion, :stars)
+    params.require(:review).permit(:opinion, :stars, :good_id)
   end
   end

@@ -4,6 +4,16 @@
   Brand: <b> <%= @good.brand %> </b>
 
   <div class="container">
+
+
+<% @reviews.each do |review| %>
+  review: <%= review.stars %>
+<% end %>
+
+
+
+
+
   <%= form_for(@review) do |f| %>
     <div class="field">
       <%= f.label :opinion %><br />
@@ -14,6 +24,8 @@
       <%= f.label :stars %><br />
       <%= f.text_field :stars, class: "form-control"  %>
     </div>
+
+    <%= f.hidden_field :good_id, value: @good.id %>
 
     <div class="actions">
       <%= f.submit "Add Review", class: "btn btn-info btn-save" %>

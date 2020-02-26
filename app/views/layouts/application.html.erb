@@ -15,6 +15,17 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="/goods/new">add new good</a>
+            <a class="nav-item nav-link" href="/users/sign_out" method="delete">log out</a>
+           <%= link_to destroy_user_session_path, method: :delete do %>log out<% end %>
+            <p class="navbar-text float-right">
+<% if user_signed_in? %>
+  Logged as: <strong><%= current_user.email %></strong>.
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+<% else %>
+  <%= link_to "Registration", new_user_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
         </div>
       </div>
     </nav>

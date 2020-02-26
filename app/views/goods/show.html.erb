@@ -1,43 +1,72 @@
-<div style="margin: 20px;padding: 20px;font-size: 16px;background: #f0f0f0;color: #888;">
-<div style="border-bottom: 1px solid #888;margin-bottom: 5px;padding-bottom-5px;">
-  Product: <b> <%= @good.product %></b> <br>
-  Brand: <b> <%= @good.brand %> </b>
-
-  <div class="container">
-
-
-<% @reviews.each do |review| %>
-  review: <%= review.stars %>
-<% end %>
-
-
-
-
-
-  <%= form_for(@review) do |f| %>
-    <div class="field">
-      <%= f.label :opinion %><br />
-      <%= f.text_field :opinion, class: "form-control" %>
+<div class="row">
+  <!--PRODUTO-->
+  <div class="col-md-6">
+    <div style="margin: 20px;padding: 20px;font-size: 16px;background: #f0f0f0;color: #888;">
+    <div style="border-bottom: 1px solid #888;margin-bottom: 5px;padding-bottom-5px;">
+      Product: <b> <%= @good.product %></b> <br>
+      Brand: <b> <%= @good.brand %> </b>
     </div>
 
-    <div class="field">
-      <%= f.label :stars %><br />
-      <%= f.text_field :stars, class: "form-control"  %>
+    <%= image_tag(@good.image_url, class: "good-image") if @good.image? %>
+    <div> <br>
+      <a class="nav-item nav-link" href="/goods/<%= @good.id %>/edit">Edit good</a>
     </div>
-
-    <%= f.hidden_field :good_id, value: @good.id %>
-
-    <div class="actions">
-      <%= f.submit "Add Review", class: "btn btn-info btn-save" %>
-    </div>
-
-  <% end %>
+  </div>
   </div>
 
+  <!--REVIEWS-->
+  <div class="col-md-6">
+      <div style="margin: 20px;padding: 20px;font-size: 16px;background: #f0f0f0;color: #888;">
+    <% @reviews.each do |review| %>
+    <div style="background: white;
+    padding: 10px;
+    margin-bottom: 5px;">
+    <% if review.opinion.present? %>
+      opinion: <%= review.opinion %>
+    <% end %><br>
+    review:
+      <!--ESTRELAS CHEIAS-->
+      <% (1..review.stars).each do |s|  %>
+      <span style="color: #ffc800;" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <% end %>
 
+      <!--ESTRELAS VAZIAS-->
+      <% (1..5 - review.stars).each do |s|  %>
+      <span style="color: #d6d6d6;" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <% end %>
+
+    </div>
+    <% end %>
+
+<div style="border-bottom: 1px solid #888;margin-bottom: 5px;padding-bottom-5px;">
 </div>
 
-<%= image_tag(@good.image_url, class: "good-image") if @good.image? %>
-<div> <br>
-  <a class="nav-item nav-link" href="/goods/<%= @good.id %>/edit">edit good</a>
+
+
+    <%= form_for(@review) do |f| %>
+      <div class="field">
+        <%= f.label :opinion %><br />
+        <%= f.text_field :opinion, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :stars %><br />
+        <%= f.text_field :stars, class: "form-control"  %>
+      </div>
+
+      <%= f.hidden_field :good_id, value: @good.id %>
+<div class="errors">
+          <% @review.errors.each do |e| %>
+            <% e.full_messages.each do |msg| %>
+            <%= msg %>
+            <% end %>
+          <% end %>
+        </div>
+
+      <div class="actions">
+        <%= f.submit "Add Review", class: "btn btn-info btn-save" %>
+      </div>
+    <% end %>
+  </div>
+  </div>
 </div>

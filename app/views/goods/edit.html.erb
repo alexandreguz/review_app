@@ -1,4 +1,6 @@
 <div class="container">
+
+
 <%= form_for(@good) do |f| %>
   <div class="field">
     <%= f.label :product %><br />
@@ -13,7 +15,7 @@
   <%= f.file_field :image %>
 
   <div class="actions">
-    <%= f.submit "Add Good", class: "btn btn-info btn-save" %>
+    <%= f.submit "Edit Good", class: "btn btn-info btn-save" %>
   </div>
 
 <% end %>
